@@ -17,18 +17,24 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd mbstring exif pcntl bcmath opcache pdo pdo_mysql xml
 
-# 4. Install Composer (the PHP package manager)
+# 4. Copy our new Apache config file  <-- THIS IS NEW
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# 5. Enable Apache's rewrite module  <-- THIS IS NEW
+RUN a2enmod rewrite
+
+# 6. Install Composer (the PHP package manager)
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# 5. Copy your local files into the container
+# 7. Copy your local files into the container
 COPY . .
 
-# 6. Install your project's dependencies
+# 8. Install your project's dependencies
 RUN composer install --no-dev --no-interaction --optimize-autoloader
 
-# 7. Set correct permissions for storage and cache
+# 9. Set correct permissions for storage and cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# 8. Expose the port Apache runs on
+# 10. Expose the port Apache runs on
 EXPOSE 80
