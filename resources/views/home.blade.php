@@ -106,7 +106,7 @@
     <header class="bg-success text-white text-center py-5">
         <div class="container py-4">
             <h1 class="display-4 fw-bold">Welcome to Shop Zone</h1>
-            <p class="lead fs-5">Buy, Sell, and Connect with others easily. The Ultimate Online Shopping Experience.</p>
+            <p class="lead fs-5">Buy, Sell, and Connect with others easily. The Ultimate Online Shopping Experience. Your #No1 shopping site</p>
         </div>
     </header>
 
