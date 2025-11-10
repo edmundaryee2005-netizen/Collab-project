@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install gd mbstring exif pcntl bcmath opcache pdo pdo_mysql xml
 
 # 4. Install Composer (the PHP package manager)
-COPY --from=composer/latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # 5. Copy your local files into the container
 COPY . .
