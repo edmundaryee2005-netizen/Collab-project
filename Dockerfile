@@ -15,12 +15,12 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd mbstring exif pcntl bcmath opcache pdo pdo_mysql xml
+    && docker-php-ext-install gd mbstring exif pcntl bcmath opcache pdo pdo_pgsql xml
 
-# 4. Copy our new Apache config file  <-- THIS IS NEW
+# 4. Copy our new Apache config file
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# 5. Enable Apache's rewrite module  <-- THIS IS NEW
+# 5. Enable Apache's rewrite module
 RUN a2enmod rewrite
 
 # 6. Install Composer (the PHP package manager)
