@@ -25,7 +25,7 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
 # 6. Install Composer (the PHP package manager)
-COPY --from=composer/latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # 7. Copy your local files into the container
 COPY . .
