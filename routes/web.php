@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
@@ -40,15 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::get('/run-migrations-abc123xyz', function () {
-    try {
-        Artisan::call('migrate', ['--force' => true]);
-        return 'Migrations executed successfully!';
-    } catch (Exception $e) {
-        return 'Migration failed: ' . $e->getMessage();
-    }
 });
 
 require __DIR__ . '/auth.php';
