@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
+    libpq-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd mbstring exif pcntl bcmath opcache pdo pdo_pgsql xml
 
@@ -24,7 +25,7 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
 # 6. Install Composer (the PHP package manager)
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer/latest /usr/bin/composer /usr/bin/composer
 
 # 7. Copy your local files into the container
 COPY . .
